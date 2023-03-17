@@ -1,0 +1,391 @@
+\documentclass[12pt,a4]{article}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage[english,dutch]{babel}
+\usepackage{gensymb}
+
+\title{Practicum Gedwongen Oscillaties en Resonantie}
+\author{Mathias Demiddeleer en Arnout Coenegrachts}
+\date{27 November 2017}
+
+\begin{document}
+\maketitle
+
+\section{Inleiding}
+Dit practicum zal zich verdiepen in gedwongen oscillaties, meer specifiek, in de resonantiefrequentie van deze trillingen. De gedwongen oscillatie slaat op een trilling die aangedreven is door een frequentiegenerator. Doordat er in de meetopstelling sprake is van 2 trillingen, een aangedreven en een veroorzaakte door de veer, zal er resonantie optreden. Resonantie is een fysisch verschijnsel dat optreed eens een trillend voorwerp in contact komt met een ander voorwerp, in dit geval de veer, dat vervolgens mee gaat trillen. De amplitude van de uitwijking $|x(\omega)|  [m]$ zal afhangen van de amplitude van de aandrijvingskracht $F_0  [m]$, de dempingsco\"effici\"ent $\eta  [kg/s]$, de massa hangende aan de veer $m  [kg]$ en de hoekfrequentie $\omega  [rad/s]$. Hierbij is $\omega_0$ de eigenfrequentie en kan geschreven worden als $\sqrt{k/m}$ waarbij k aangeduid wordt als de veerconstante $k  [N/m]$. Ook zal in dit practicum gekeken worden naar het faseverschil $ \phi(\omega)  [\degree]$.\\ \\
+
+\section{theoretische achtergrond \& voorbereiding}
+Volgende paragraaf is geparafraseerd van \cite{a}.\\
+Om dit practicum beter te begrijpen zal de lezer eerst meer inzicht moeten verkrijgen in de reeds vermelde begrippen.\\
+\begin{itemize}
+\item De veercontante $k$ van een veer drukt de uitrekbaarheid van de veer uit. Hoe groter de veerconstante, hoe meer arbeid er verricht moet worden om de veer een bepaalde afstand te laten uitrekken. De wet van Hooke vertelt hier extra bij dat het verband tussen de veercontante en voortkomende vervorming lineair is. In formule gegoten wordt dit:
+\begin{equation}
+\label{veerkracht}
+\vec{F}_r = -kx
+\end{equation} 
+\item De dempingsco\"effici\"ent $\eta$ is een constante die bepaald wordt door de soort middenstof dat er gebruikt wordt. Het verklaart de specifieke wrijvingskracht van een stof. De dempingskracht is vervolgens afhankelijk van deze co\"effici\"ent en de snelheid en wordt dus geschreven als:
+\begin{equation}
+\label{wrijvingskracht}
+\vec{F}_d = -\eta \frac{dx}{dt}
+\end{equation} 
+\item De aandrijvingskracht $\vec{F}_a$ kan uitgelegd worden als een kracht die de massa in beweging houdt. In dit practicum zal dat gegenereerd worden door de frequentiegenerator waardoor deze kracht dus sinuo\"idaal is en geschreven kan worden als:
+\begin{equation}
+\label{aandrijvingskracht}
+\vec{F}_{a} = F_0 e^{i\omega t}
+\end{equation}
+Hierbij is $i$ de imaginaire eenheid, $\omega$ de hoekfrequentie en $t$ de tijd. Deze complexe notatie heeft als voordeel dat een faseverschuiving $\phi$ naar de amplitude $F_0$ verschuift.\\ 
+\item De hoekfrequentie $\omega$ van een systeem is de tangenti\"ele snelheid van een punt op een cirkelvormige baan. Deze is afhankelijk van de straal $R$ van deze cirkel en kan geschreven worden als:
+\begin{center}
+$\omega = v/R$
+\end{center}
+Aangezien dit op een cirkelvormige beweging is, kan deze ook berekend worden door:
+\begin{center}
+$\omega = 2\pi\nu$
+\end{center}
+Hierbij is $\nu$ de frequentie, het aantal cirkelvormige bewegingen per eenheid van tijd. Een speciale toepassing op de hoekfrequentie is de eigenfrequentie $\omega_0$, deze hoeksnelheid treed op indien het punt niet op een cirkelvormige beweging rust, maar aan een veer met veerconstante $k$ hangt.\\ \\
+\end{itemize}
+
+Om een uitdrukking te vinden voor de amplitude $|x(\omega)|$ en de fasehoek $\phi(\omega)$ in functie van de hoekfrequentie $\omega$ (die op zich in functie is van de frequentie $\nu$) werd er gebruik gemaakt van de tweede wet van Newton. De totale kracht $F_{tot} [N]$ inwerekend op het blokje met massa $m$ zal geschreven kunnen worden als:
+\begin{equation}
+\label{Newton}
+\vec{F}_{tot} = \vec{F}_{r} + \vec{F}_{a} + \vec{F}_{d}
+\end{equation}
+Hierbij is $\vec{F}_{r}$ de kracht die de veer op de massa verricht eens deze uit evenwichtstoestand is, $\vec{F}_{a}$ de aandrijvingskracht aangelegd door de frequentiegenerator, en $\vec{F}_{d}$ de dempingskracht dat het water uitoefent op het blokje.\\ \\
+Door middel van gebruik te maken van de wet van Hooke (\ref{veerkracht}), de fysische formule voor de dempingskracht (\ref{wrijvingskracht}) en imaginaire schrijfwijze van de aandrijvingskracht (\ref{aandrijvingskracht}), en deze in te vullen in (\ref{Newton}), wordt volgende differentiaalvergelijking bekomen:
+\begin{equation}
+\label{diffvgl}
+m\frac{d^2x}{dt^2} = -kx - \eta\frac{dx}{dt} + F_0e^{i\omega t}
+\end{equation}
+Deze differentiaalvergelijking heeft volgende oplossing:
+\begin{equation}
+\label{oplossing}
+x = \frac{F_0 e^{i\omega t + i\phi (\omega)}}{m\sqrt{(\omega^2_0-\omega^2)^2 + (\omega \frac{\eta}{m})^2}}
+\end{equation}
+Hierbij is de amplitude van de uitwijking:
+\begin{equation}
+\label{amplitude}
+|x(\omega)| = \frac{F_0}{m\sqrt{(\omega_0^2-\omega^2)^2+(\omega\frac{\eta}{m})^2}} 
+\end{equation}
+en het faseverschil:
+\begin{equation}
+\label{fasehoek}
+\phi(\omega) = -arctan\left(\frac{\omega\frac{\eta}{m}}{\omega_0^2+\omega^2}\right)
+\end{equation}
+Om het verloop van de amplitude en de fasehoek te voorspellen, gaan de formules (\ref{amplitude}) en (\ref{fasehoek})  herschreven worden in functie van dimensieloze eenheden: $X = F_0/k$, dimensieloze frequentie $w = \omega/\omega_0$ en dimensieloze dempingssterkte $b = \eta/\sqrt{2km}$.
+Dan wordt (\ref{amplitude}):
+\begin{equation}
+\label{amplitude2}
+|x(w)| = \frac{X}{\sqrt{2b^2w^2+(1-w^2)^2}}
+\end{equation}
+en (\ref{fasehoek}) wordt dan:
+\begin{equation}
+\label{fasehoek2}
+\phi(w) = -arctan\left(\frac{\sqrt{2}bw}{1-w^2}\right)
+\end{equation}
+Indien (\ref{amplitude2}) en (\ref{fasehoek2}) geplot worden bekomen we respectievelijk figuren 1 en 2:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 14cm]{Afbeelding1.jpg}
+\caption{Theoretisch verloop van de amplitude voor verschillende (dimensieloze) dempingssterktes $b \in [0,1]$ }
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 14cm]{Afbeelding2.jpg}
+\caption{Theoretisch verloop van de fasehoek voor verschillende (dimensieloze) dempingssterktes $b \in [0,1]$ }
+\end{figure}
+
+
+Op deze grafieken kan men afleiden dat er resonantieamplitude optreedt bij een frequentie $w = 1.0$, dus als de hoekfrequentie $\omega$ gelijk is aan de eigenfrequentie $\omega_0$.
+
+\section{Materiaal \& Methoden}
+Voor dit experiment is er gebruik gemaakt van een opstelling zoals in figuur 3. De opstelling bestaat uit een massa met massa m die aan een veer met veerconstante k hangt (1 op de figuur). De veer is verbonden met een wiel aan een motor, wat de oscillatie aandrijft. De frequentie van de oscillator kan via de motor gevarieerd worden (4 op de figuur). De massa is ondergedompeld in water (3 op de figuur), waardoor er een dempingskracht op de oscillatie komt. Een bewegingsdetector (2 op de figuur) registreert de beweging en deze geeft de informatie door aan een computer. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 9cm]{meetopstelling}
+\caption{Schema van de meetopstelling, bestaande uit 1) massa met veer, 2) bewegingsdetector, 3) water, 4) motor en 5) computer. (Afbeelding en beschrijving uit \cite{a})}
+\end{figure}
+
+De computer (5 op de figuur) geeft de frequentie, amplitude en het faseverschil tussen de aandrijving en de beweging zelf weer. Door de computer 15 keer te laten meten bij eenzelfde frequentie, geeft hij het gemiddelde en de fout op elk van de drie grootheden weer. De computer berekent de fout volgens de volgende formule:
+\[ s = \sqrt{\frac{\sum_{i=1}^{N}(x_i-m)^2}{N-1}} \]
+Waarbij $N$ het aantal metingen is ($N = 15$ bij dit experiment), $x_i$ de verschillende gemeten waardes en $m$ het gemiddelde van alle gemeten waardes.
+Voor het plotten van de gemeten waarden en het fitten van de parameters in onze theoretische modellen, hebben we de programeer taal Python gebruikt. Voor het fitten van de parameters zelf hebben we de LS-methode gebruikt, waarbij we 
+\[ \chi^2(\vec\theta) = \sum_i\frac{(y_i - f(x_i | \vec\theta))^2}{\sigma_i^2} \]
+minimaliseren. Hierbij is de vector $\vec\theta$ een vector met alle te fitten parameters er in, $f(x_i |\vec\theta)$ het theoretisch model in functie van de gemeten waardes $x_i$ en de parameters $\vec\theta$, $y_i$ zijn de gemeten waardes waarvoor we het model gebruiken en $\sigma_i$ zijn de fouten op de $y_i$. Voor dit experiment zal $x$ telkens de frequentie zijn en de $y$ ofwel de amplitude ofwel de fasehoek zijn. De respectievelijke modellen hiervoor werden in het theorie gedeelte van dit verslag behandeld.\\
+De fout op de gefitte parameters wordt bepaald door $\chi^2$ te laten vari\"eren in functie van een van de parameters en te zoeken voor welke waardes van de parameter de $\chi^2$ met een waarde 1 varieert van de minimale waarde.\\
+Tenslotte wordt er ook nog de kwaliteit van de fit gecontroleerd door te kijken of $\chi^2(\vec\theta)$ voldoet aan de  $\chi^2_{\nu}$ verdeling, waarbij $\nu = N - p$ het aantal vrijheidsgraden is, en $N$ het aantal gemeten datapunten en $p$ aantal te fitten parameters is (dus het aantal elementen in $\vec\theta$).
+
+\section{meetresultaten \& discussie}
+
+Bij dit practicum werden twee blokjes gebruikt, telkens met dezelfde massa $m$, maar met een ander oppervlak. Hierdoor werd de wrijving bij blokje 2 groter.\\
+\begin{itemize}
+\item Eerst werd het blokje met de kleinste oppervlakte, dus ook kleinste wrijving aan de veer gemonteerd. Hierbij werden eerst een paar metingen gedaan waaruit de efficientie van het meettoestel vergroot kon worden door middel van de amplitude van de frequentiegenerator te verminderen zodat het blokje op zijn resonantiefrequentie de bodem niet zou raken. Verder werd er ook gekeken naar de bewegingsdetector, dat deze op het juiste moment ging branden. Ook werd er voor gezorgd dat het blokje de rand van de beker met water niet raakte. In tabel 1 (zie bijlage, pagina 13) werden 28 datapunten genoteerd, telkens met 15 geregistreerde metingen door de bewegingsdetector. In de tabellen staat $\phi$ steeds in de eenheid graden $\degree$. Dit kan makkelijk omgevormd worden naar radialen door dit maal $\pi/180$ te doen. \\ 
+
+Zo te zien heeft de laatste meting een $\Delta A = 0.00mm$. Deze meting wordt vervolgens weggelaten om een correctere fit van de amplitude in functie van de frequentie te plotten. Deze meting werd weggelaten omdat er geen onzekerheid op de amplitude was. Dit wil zeggen dat de geplotte grafiek hier zeker zou door moeten gaan, maar eens gefit te hebben blijkt eerder dat de curve nog meer zou afwijken van de theoretische grafiek. Nieuwe tabel, tabel 2 (zie bijlage, pagina 14), werd geconstrueerd zonder deze meting. Uit deze tabel zal vervolgens de amplitude in functie van de hoekfrequentie geplot worden. Vervolgens kan er een functie door de punten getekend worden door middel van de LS-methode en werd figuur 4 bekomen. \\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 14cm]{Afbeelding4.jpg}
+\caption{Amplitude meetresultaten van de massa met het kleine oppervlak met de fit van het theoretische model}
+\end{figure}
+
+Nu werden de verschillende parameters door de plot afgeschat en bekomen volgende waarden:$\frac{F_0}{m} = (498 \pm 3)\frac{N}{kg}$,
+$\frac{\eta}{m} = (0.563 \pm 0.009)s^{-1}$ en
+$\omega_0 = (10.688 \pm 0.005)\frac{rad}{s}$. Voor de p-waarde bekwam men: p-waarde = 0\%. Aangezien dit kleiner is dan 5\% moet de hypothese, dat de meetresultaten overeenkomen met de geplotte functie $|x(\omega)|$ doorheen deze punten, verworpen worden met 95\% zekerheid.\\ \\
+Nadien werd dezelfde methode toegepast voor de fasehoek in functie van de frequentie. Hierbij werden alle uitschieters weggelaten. Dit komt overeen met metingen \#1, \#2 en \#28. Tabel 3 (zie bijlage, pagina 15) geeft dan de gebruikte data weer. De geplotte grafiek staat in figuur 5.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 14cm]{Afbeelding6.jpg}
+\caption{Fasehoek meetresultaten van de massa met het kleine oppervlak met de fit van het theoretische model}
+\end{figure}
+
+Ook hier werden de parameters afgeschat:$\frac{\eta}{m} = (0.447 \pm 0.004)s^{-1}$, $\omega_0 = (10.6621 \pm 0.0014)\frac{rad}{s}$en wederom een p-waarde = 0\%. Hier moeten de meetresultaten verworpen worden met de theoretische fit. Dit wederom met 95\% zekerheid.
+
+\item Nu werd het blokje met de grootste oppervlakte aan de veer bevestigd. Dit blokje heeft dus meer wrijving. Bij deze proef was de oppervlakte van het blokje bijna even groot als de horizontale doorsnede van de beker gevuld met water. Hierbij kan er dus niet gegarandeerd worden dat dit blokje niet de rand heeft geraakt. In tabel 4 (zie bijlage, pagina 16) werden 27 datapunten genoteerd, telkens met 15 geregistreerde metingen door de bewegingsdetector.\\
+
+Ook nu voor de amplitude in functie van de frequentie te plotten werden de meetresultaten met $\Delta A = 0.00mm$ weggelaten. Dit zijn metingen \#1, \#5, \#6 en \#26. Tabel 5 (zie bijlage, pagina 17) geeft deze waardes niet mee en zal vervolgens geplot worden. Vervolgens kan er een functie door de punten getekend worden met behulp van de LS-methode en bekwam men: Deze plots staan in figuur 6.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 14cm]{Afbeelding8.jpg}
+\caption{Amplitude meetresultaten van de massa met het grote oppervlak met de fit van het theoretische model}
+\end{figure}
+
+De door de computer afgeschatte parameters waren:
+$\frac{F_0}{m} = (2609 \pm 9)\frac{N}{kg}$, $\frac{\eta}{m} = (-4.67 \pm 0.04)s^{-1}$ en $\omega_0 = (10.299 \pm 0.015)\frac{rad}{s}$. Deze grafiek heeft een p-waarde = 5.77\%. Aangezien dit groter is dan 5\% kan er met 95\% zekerheid beschouwd worden dat de meetresulaten overeenkomen met de theorie.\\
+
+Tenslotte werd bij de fasehoek in functie van de frequentie de uitschieters niet meegerekend. Dat is meting \#21. Hierbij werd ook meting \#19 niet meegerekend omdat deze meting een te grote fout heeft. Tabel 6 (zie bijlage, pagina 18) geeft de gebruikte waardes voor de plot mee en wederom kan er een functie door de punten getekend worden door middel van de LS-methode en bekwam men figuur 7.\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 14cm]{Afbeelding10.jpg}
+\caption{Fasehoek meetresultaten van de massa met het grote oppervlak met de fit van het theoretische model}
+\end{figure}
+
+De door de computer afgeschatte parameters waren:$\frac{\eta}{m} = (-4.53 \pm 0.02)s^{-1}$, $\omega_0 = (9.947 \pm 0.008)\frac{rad}{s}$ en de
+p-waarde = 0\%, wat dus betekend dat de metingen niet overeenkomen met de theorie, dit te zeggen met een zekerheid van 95\%.\\ \\
+\end{itemize}
+
+De amplitude- en fasehoekfit komen nooit overeen. De gefitte parameters liggen nooit echt ver uit elkaar, maar ze bevinden zich nooit binnen de fout van elkaar. Dit komt mede doordat er heel veel metingen rond de resonantiefrequentie gemeten zijn en hierdoor minder bij andere frequenties. Ook zijn de fouten bij sommige waardes te groot om van een nauwkeurige meting te spreken.\\
+De dempingsparameter $\eta$ is ongeveer 10 keer zo groot bij de massa met het grote oppervlak dan bij het kleine oppervlak, wat ook te verwachten was.\\
+
+\begin{thebibliography}{1}
+\bibitem{a} Riccardo Raabe 
+{\em Gedwongen oscillaties en resonantie}  2017.
+\end{thebibliography}
+
+\section{Bijlage: tabellen}
+\begin{table}[h]
+\centering
+\caption{Meetresultaten van meting met de massa met het kleine oppervlak}
+\begin{tabular}{c | c | c | c | c | c | c }
+$ n $&$\omega [Hz] $&$ \Delta\omega [Hz] $&$ A [mm] $&$ \Delta A [mm] $&$ \phi [\degree] $&$ \Delta \phi [\degree] $\\
+\hline
+$ 1 $&$ 2.1660 $&$ 0.0125 $&$ 05.33 $&$ 0.49 $&$ 140.566 $&$ 84.526 $\\
+$ 2 $&$ 1.9492 $&$ 0.0089 $&$ 11.20 $&$ 0.41 $&$ 49.638 $&$ 50.609 $\\
+$ 3 $&$ 1.8384 $&$ 0.0032 $&$ 21.80 $&$ 0.94 $&$ 176.129 $&$ 0.880 $\\
+$ 4 $&$ 1.8002 $&$ 0.0027 $&$ 30.40 $&$ 0.63 $&$ 172.731 $&$ 1.262 $\\
+$ 5 $&$ 1.7880 $&$ 0.0031 $&$ 35.53 $&$ 0.74 $&$ 170.485 $&$ 0.752 $\\
+$ 6 $&$ 1.7787 $&$ 0.0073 $&$ 43.00 $&$ 1.13 $&$ 166.567 $&$ 1.326 $\\
+$ 7 $&$ 1.7703 $&$ 0.0073 $&$ 47.87 $&$ 1.19 $&$ 163.950 $&$ 1.359 $\\
+$ 8 $&$ 1.7650 $&$ 0.0033 $&$ 54.20 $&$ 1.57 $&$ 160.547 $&$ 0.769 $\\
+$ 9 $&$ 1.7391 $&$ 0.0284 $&$ 61.00 $&$ 2.45 $&$ 152.135 $&$ 2.782 $\\
+$ 10 $&$ 1.7421 $&$ 0.0117 $&$ 67.27 $&$ 2.22 $&$ 147.094 $&$ 1.617 $\\
+$ 11 $&$ 1.7376 $&$ 0.0048 $&$ 72.40 $&$ 3.64 $&$ 139.621 $&$ 0.685 $\\
+$ 12 $&$ 1.7312 $&$ 0.0067 $&$ 73.53 $&$ 5.37 $&$ 131.879 $&$ 1.123 $\\
+$ 13 $&$ 1.7234 $&$ 0.0161 $&$ 75.13 $&$ 6.16 $&$ 126.647 $&$ 1.260 $\\
+$ 14 $&$ 1.7189 $&$ 0.0041 $&$ 76.53 $&$ 4.72 $&$ 118.563 $&$ 1.102 $\\
+$ 15 $&$ 1.7122 $&$ 0.0175 $&$ 75.27 $&$ 5.26 $&$ 113.625 $&$ 1.803 $\\
+$ 16 $&$ 1.7035 $&$ 0.0209 $&$ 77.07 $&$ 4.18 $&$ 105.116 $&$ 1.666 $\\
+$ 17 $&$ 1.7089 $&$ 0.0035 $&$ 78.40 $&$ 5.08 $&$ 100.853 $&$ 0.808 $\\
+$ 18 $&$ 1.6964 $&$ 0.0068 $&$ 74.67 $&$ 6.74 $&$ 86.392 $&$ 0.770 $\\
+$ 19 $&$ 1.6878 $&$ 0.0075 $&$ 72.67 $&$ 4.76 $&$ 75.221 $&$ 0.955 $\\
+$ 20 $&$ 1.6829 $&$ 0.0049 $&$ 72.40 $&$ 5.73 $&$ 67.246 $&$ 0.928 $\\
+$ 21 $&$ 1.6766 $&$ 0.0054 $&$ 69.80 $&$ 2.46 $&$ 57.462 $&$ 0.794 $\\
+$ 22 $&$ 1.6579 $&$ 0.0250 $&$ 61.13 $&$ 2.39 $&$ 46.509 $&$ 1.461 $\\
+$ 23 $&$ 1.6468 $&$ 0.0068 $&$ 49.67 $&$ 2.35 $&$ 40.269 $&$ 2.150 $\\
+$ 24 $&$ 1.6231 $&$ 0.0044 $&$ 43.40 $&$ 1.45 $&$ 34.631 $&$ 0.711 $\\
+$ 25 $&$ 1.5755 $&$ 0.0022 $&$ 30.73 $&$ 0.46 $&$ 27.717 $&$ 0.647 $\\
+$ 26 $&$ 1.4984 $&$ 0.0026 $&$ 20.53 $&$ 0.74 $&$ 24.130 $&$ 0.662 $\\
+$ 27 $&$ 1.3375 $&$ 0.0039 $&$ 12.40 $&$ 0.63 $&$ 23.144 $&$ 0.747 $\\
+$ 28 $&$ 0.8623 $&$ 0.0015 $&$ 07.00 $&$ 0.00 $&$ 26.571 $&$ 0.692 $\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Data van het kleine oppervlak zonder $\Delta A = 0.00mm$}
+\begin{tabular}{c | c | c | c | c | c | c }
+$ n $&$\omega [Hz] $&$ \Delta\omega [Hz] $&$ A [mm] $&$ \Delta A [mm] $&$ \phi [\degree] $&$ \Delta \phi [\degree] $\\
+\hline
+$ 1 $&$ 2.1660 $&$ 0.0125 $&$ 05.33 $&$ 0.49 $&$ 140.566 $&$ 84.526 $\\
+$ 2 $&$ 1.9492 $&$ 0.0089 $&$ 11.20 $&$ 0.41 $&$ 49.638 $&$ 50.609 $\\
+$ 3 $&$ 1.8384 $&$ 0.0032 $&$ 21.80 $&$ 0.94 $&$ 176.129 $&$ 0.880 $\\
+$ 4 $&$ 1.8002 $&$ 0.0027 $&$ 30.40 $&$ 0.63 $&$ 172.731 $&$ 1.262 $\\
+$ 5 $&$ 1.7880 $&$ 0.0031 $&$ 35.53 $&$ 0.74 $&$ 170.485 $&$ 0.752 $\\
+$ 6 $&$ 1.7787 $&$ 0.0073 $&$ 43.00 $&$ 1.13 $&$ 166.567 $&$ 1.326 $\\
+$ 7 $&$ 1.7703 $&$ 0.0073 $&$ 47.87 $&$ 1.19 $&$ 163.950 $&$ 1.359 $\\
+$ 8 $&$ 1.7650 $&$ 0.0033 $&$ 54.20 $&$ 1.57 $&$ 160.547 $&$ 0.769 $\\
+$ 9 $&$ 1.7391 $&$ 0.0284 $&$ 61.00 $&$ 2.45 $&$ 152.135 $&$ 2.782 $\\
+$ 10 $&$ 1.7421 $&$ 0.0117 $&$ 67.27 $&$ 2.22 $&$ 147.094 $&$ 1.617 $\\
+$ 11 $&$ 1.7376 $&$ 0.0048 $&$ 72.40 $&$ 3.64 $&$ 139.621 $&$ 0.685 $\\
+$ 12 $&$ 1.7312 $&$ 0.0067 $&$ 73.53 $&$ 5.37 $&$ 131.879 $&$ 1.123 $\\
+$ 13 $&$ 1.7234 $&$ 0.0161 $&$ 75.13 $&$ 6.16 $&$ 126.647 $&$ 1.260 $\\
+$ 14 $&$ 1.7189 $&$ 0.0041 $&$ 76.53 $&$ 4.72 $&$ 118.563 $&$ 1.102 $\\
+$ 15 $&$ 1.7122 $&$ 0.0175 $&$ 75.27 $&$ 5.26 $&$ 113.625 $&$ 1.803 $\\
+$ 16 $&$ 1.7035 $&$ 0.0209 $&$ 77.07 $&$ 4.18 $&$ 105.116 $&$ 1.666 $\\
+$ 17 $&$ 1.7089 $&$ 0.0035 $&$ 78.40 $&$ 5.08 $&$ 100.853 $&$ 0.808 $\\
+$ 18 $&$ 1.6964 $&$ 0.0068 $&$ 74.67 $&$ 6.74 $&$ 86.392 $&$ 0.770 $\\
+$ 19 $&$ 1.6878 $&$ 0.0075 $&$ 72.67 $&$ 4.76 $&$ 75.221 $&$ 0.955 $\\
+$ 20 $&$ 1.6829 $&$ 0.0049 $&$ 72.40 $&$ 5.73 $&$ 67.246 $&$ 0.928 $\\
+$ 21 $&$ 1.6766 $&$ 0.0054 $&$ 69.80 $&$ 2.46 $&$ 57.462 $&$ 0.794 $\\
+$ 22 $&$ 1.6579 $&$ 0.0250 $&$ 61.13 $&$ 2.39 $&$ 46.509 $&$ 1.461 $\\
+$ 23 $&$ 1.6468 $&$ 0.0068 $&$ 49.67 $&$ 2.35 $&$ 40.269 $&$ 2.150 $\\
+$ 24 $&$ 1.6231 $&$ 0.0044 $&$ 43.40 $&$ 1.45 $&$ 34.631 $&$ 0.711 $\\
+$ 25 $&$ 1.5755 $&$ 0.0022 $&$ 30.73 $&$ 0.46 $&$ 27.717 $&$ 0.647 $\\
+$ 26 $&$ 1.4984 $&$ 0.0026 $&$ 20.53 $&$ 0.74 $&$ 24.130 $&$ 0.662 $\\
+$ 27 $&$ 1.3375 $&$ 0.0039 $&$ 12.40 $&$ 0.63 $&$ 23.144 $&$ 0.747 $\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Data van het kleine oppervlak zonder uitschieters voor $\phi [\degree]$}
+\begin{tabular}{c | c | c | c | c | c | c }
+$ n $&$\omega [Hz] $&$ \Delta\omega [Hz] $&$ A [mm] $&$ \Delta A [mm] $&$ \phi [\degree] $&$ \Delta \phi [\degree] $\\
+\hline
+$ 3 $&$ 1.8384 $&$ 0.0032 $&$ 21.80 $&$ 0.94 $&$ 176.129 $&$ 0.880 $\\
+$ 4 $&$ 1.8002 $&$ 0.0027 $&$ 30.40 $&$ 0.63 $&$ 172.731 $&$ 1.262 $\\
+$ 5 $&$ 1.7880 $&$ 0.0031 $&$ 35.53 $&$ 0.74 $&$ 170.485 $&$ 0.752 $\\
+$ 6 $&$ 1.7787 $&$ 0.0073 $&$ 43.00 $&$ 1.13 $&$ 166.567 $&$ 1.326 $\\
+$ 7 $&$ 1.7703 $&$ 0.0073 $&$ 47.87 $&$ 1.19 $&$ 163.950 $&$ 1.359 $\\
+$ 8 $&$ 1.7650 $&$ 0.0033 $&$ 54.20 $&$ 1.57 $&$ 160.547 $&$ 0.769 $\\
+$ 9 $&$ 1.7391 $&$ 0.0284 $&$ 61.00 $&$ 2.45 $&$ 152.135 $&$ 2.782 $\\
+$ 10 $&$ 1.7421 $&$ 0.0117 $&$ 67.27 $&$ 2.22 $&$ 147.094 $&$ 1.617 $\\
+$ 11 $&$ 1.7376 $&$ 0.0048 $&$ 72.40 $&$ 3.64 $&$ 139.621 $&$ 0.685 $\\
+$ 12 $&$ 1.7312 $&$ 0.0067 $&$ 73.53 $&$ 5.37 $&$ 131.879 $&$ 1.123 $\\
+$ 13 $&$ 1.7234 $&$ 0.0161 $&$ 75.13 $&$ 6.16 $&$ 126.647 $&$ 1.260 $\\
+$ 14 $&$ 1.7189 $&$ 0.0041 $&$ 76.53 $&$ 4.72 $&$ 118.563 $&$ 1.102 $\\
+$ 15 $&$ 1.7122 $&$ 0.0175 $&$ 75.27 $&$ 5.26 $&$ 113.625 $&$ 1.803 $\\
+$ 16 $&$ 1.7035 $&$ 0.0209 $&$ 77.07 $&$ 4.18 $&$ 105.116 $&$ 1.666 $\\
+$ 17 $&$ 1.7089 $&$ 0.0035 $&$ 78.40 $&$ 5.08 $&$ 100.853 $&$ 0.808 $\\
+$ 18 $&$ 1.6964 $&$ 0.0068 $&$ 74.67 $&$ 6.74 $&$ 86.392 $&$ 0.770 $\\
+$ 19 $&$ 1.6878 $&$ 0.0075 $&$ 72.67 $&$ 4.76 $&$ 75.221 $&$ 0.955 $\\
+$ 20 $&$ 1.6829 $&$ 0.0049 $&$ 72.40 $&$ 5.73 $&$ 67.246 $&$ 0.928 $\\
+$ 21 $&$ 1.6766 $&$ 0.0054 $&$ 69.80 $&$ 2.46 $&$ 57.462 $&$ 0.794 $\\
+$ 22 $&$ 1.6579 $&$ 0.0250 $&$ 61.13 $&$ 2.39 $&$ 46.509 $&$ 1.461 $\\
+$ 23 $&$ 1.6468 $&$ 0.0068 $&$ 49.67 $&$ 2.35 $&$ 40.269 $&$ 2.150 $\\
+$ 24 $&$ 1.6231 $&$ 0.0044 $&$ 43.40 $&$ 1.45 $&$ 34.631 $&$ 0.711 $\\
+$ 25 $&$ 1.5755 $&$ 0.0022 $&$ 30.73 $&$ 0.46 $&$ 27.717 $&$ 0.647 $\\
+$ 26 $&$ 1.4984 $&$ 0.0026 $&$ 20.53 $&$ 0.74 $&$ 24.130 $&$ 0.662 $\\
+$ 27 $&$ 1.3375 $&$ 0.0039 $&$ 12.40 $&$ 0.63 $&$ 23.144 $&$ 0.747 $\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Meetresultaten van meting met de massa met het grote oppervlak}
+\begin{tabular}{c | c | c | c | c | c | c }
+$ n $&$\omega [Hz] $&$ \Delta\omega [Hz] $&$ A [mm] $&$ \Delta A [mm] $&$ \phi [\degree] $&$ \Delta \phi [\degree] $\\
+\hline
+$ 1 $&$ 0.2706 $&$ 0.0004 $&$ 24.00 $&$ 0.00 $&$ 15.658 $&$ 0.170 $\\
+$ 2 $&$ 0.6376 $&$ 0.0008 $&$ 28.13 $&$ 0.35 $&$ 17.338 $&$ 0.294 $\\
+$ 3 $&$ 0.7874 $&$ 0.0008 $&$ 30.07 $&$ 0.26 $&$ 18.576 $&$ 0.211 $\\
+$ 4 $&$ 0.8281 $&$ 0.0006 $&$ 31.40 $&$ 0.51 $&$ 19.198 $&$ 0.331 $\\
+$ 5 $&$ 0.8670 $&$ 0.0007 $&$ 32.00 $&$ 0.00 $&$ 19.851 $&$ 0.259 $\\
+$ 6 $&$ 0.9360 $&$ 0.0012 $&$ 34.00 $&$ 0.00 $&$ 21.881 $&$ 0.318 $\\
+$ 7 $&$ 0.9983 $&$ 0.0024 $&$ 35.93 $&$ 0.26 $&$ 23.528 $&$ 0.361 $\\
+$ 8 $&$ 1.0812 $&$ 0.0012 $&$ 39.27 $&$ 0.46 $&$ 27.324 $&$ 0.429 $\\
+$ 9 $&$ 1.1447 $&$ 0.0033 $&$ 41.33 $&$ 1.29 $&$ 31.539 $&$ 0.383 $\\
+$ 10 $&$ 1.2158 $&$ 0.0012 $&$ 44.33 $&$ 0.49 $&$ 37.320 $&$ 0.590 $\\
+$ 11 $&$ 1.2678 $&$ 0.0199 $&$ 47.33 $&$ 1.29 $&$ 42.901 $&$ 0.754 $\\
+$ 12 $&$ 1.3380 $&$ 0.0029 $&$ 50.33 $&$ 0.82 $&$ 50.641 $&$ 0.484 $\\
+$ 13 $&$ 1.4020 $&$ 0.0207 $&$ 52.87 $&$ 1.06 $&$ 59.923 $&$ 0.812 $\\
+$ 14 $&$ 1.4616 $&$ 0.0050 $&$ 54.40 $&$ 1.35 $&$ 69.598 $&$ 0.733 $\\
+$ 15 $&$ 1.5072 $&$ 0.0046 $&$ 54.40 $&$ 2.47 $&$ 75.745 $&$ 0.941 $\\
+$ 16 $&$ 1.5503 $&$ 0.0052 $&$ 54.00 $&$ 1.41 $&$ 83.123 $&$ 0.904 $\\
+$ 17 $&$ 1.6013 $&$ 0.0062 $&$ 52.60 $&$ 1.55 $&$ 91.120 $&$ 0.704 $\\
+$ 18 $&$ 1.6291 $&$ 0.0057 $&$ 50.67 $&$ 3.06 $&$ 95.166 $&$ 0.567 $\\
+$ 19 $&$ 1.6882 $&$ 0.0059 $&$ 49.93 $&$ 2.28 $&$ 99.481 $&$ 19.504 $\\
+$ 20 $&$ 1.7044 $&$ 0.0334 $&$ 47.60 $&$ 3.56 $&$ 107.985 $&$ 2.228 $\\
+$ 21 $&$ 1.7433 $&$ 0.0271 $&$ 46.67 $&$ 2.26 $&$ 133.254 $&$ 1.640 $\\
+$ 22 $&$ 1.8010 $&$ 0.0272 $&$ 43.80 $&$ 2.11 $&$ 121.679 $&$ 2.086 $\\
+$ 23 $&$ 1.9223 $&$ 0.0110 $&$ 39.47 $&$ 1.06 $&$ 136.467 $&$ 1.149 $\\
+$ 24 $&$ 2.0253 $&$ 0.0090 $&$ 32.60 $&$ 1.12 $&$ 147.912 $&$ 0.858 $\\
+$ 25 $&$ 2.1327 $&$ 0.0042 $&$ 27.80 $&$ 0.56 $&$ 155.959 $&$ 0.767 $\\
+$ 26 $&$ 2.2977 $&$ 0.0050 $&$ 22.00 $&$ 0.00 $&$ 165.267 $&$ 0.997 $\\
+$ 27 $&$ 2.4629 $&$ 0.0086 $&$ 17.73 $&$ 0.59 $&$ 170.239 $&$ 1.058 $\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Data van het grote oppervlak zonder $\Delta A = 0.00mm$}
+\begin{tabular}{c | c | c | c | c | c | c }
+$ n $&$\omega [Hz] $&$ \Delta\omega [Hz] $&$ A [mm] $&$ \Delta A [mm] $&$ \phi [\degree] $&$ \Delta \phi [\degree] $\\
+\hline
+$ 2 $&$ 0.6376 $&$ 0.0008 $&$ 28.13 $&$ 0.35 $&$ 17.338 $&$ 0.294 $\\
+$ 3 $&$ 0.7874 $&$ 0.0008 $&$ 30.07 $&$ 0.26 $&$ 18.576 $&$ 0.211 $\\
+$ 4 $&$ 0.8281 $&$ 0.0006 $&$ 31.40 $&$ 0.51 $&$ 19.198 $&$ 0.331 $\\
+$ 7 $&$ 0.9983 $&$ 0.0024 $&$ 35.93 $&$ 0.26 $&$ 23.528 $&$ 0.361 $\\
+$ 8 $&$ 1.0812 $&$ 0.0012 $&$ 39.27 $&$ 0.46 $&$ 27.324 $&$ 0.429 $\\
+$ 9 $&$ 1.1447 $&$ 0.0033 $&$ 41.33 $&$ 1.29 $&$ 31.539 $&$ 0.383 $\\
+$ 10 $&$ 1.2158 $&$ 0.0012 $&$ 44.33 $&$ 0.49 $&$ 37.320 $&$ 0.590 $\\
+$ 11 $&$ 1.2678 $&$ 0.0199 $&$ 47.33 $&$ 1.29 $&$ 42.901 $&$ 0.754 $\\
+$ 12 $&$ 1.3380 $&$ 0.0029 $&$ 50.33 $&$ 0.82 $&$ 50.641 $&$ 0.484 $\\
+$ 13 $&$ 1.4020 $&$ 0.0207 $&$ 52.87 $&$ 1.06 $&$ 59.923 $&$ 0.812 $\\
+$ 14 $&$ 1.4616 $&$ 0.0050 $&$ 54.40 $&$ 1.35 $&$ 69.598 $&$ 0.733 $\\
+$ 15 $&$ 1.5072 $&$ 0.0046 $&$ 54.40 $&$ 2.47 $&$ 75.745 $&$ 0.941 $\\
+$ 16 $&$ 1.5503 $&$ 0.0052 $&$ 54.00 $&$ 1.41 $&$ 83.123 $&$ 0.904 $\\
+$ 17 $&$ 1.6013 $&$ 0.0062 $&$ 52.60 $&$ 1.55 $&$ 91.120 $&$ 0.704 $\\
+$ 18 $&$ 1.6291 $&$ 0.0057 $&$ 50.67 $&$ 3.06 $&$ 95.166 $&$ 0.567 $\\
+$ 19 $&$ 1.6882 $&$ 0.0059 $&$ 49.93 $&$ 2.28 $&$ 99.481 $&$ 19.504 $\\
+$ 20 $&$ 1.7044 $&$ 0.0334 $&$ 47.60 $&$ 3.56 $&$ 107.985 $&$ 2.228 $\\
+$ 21 $&$ 1.7433 $&$ 0.0271 $&$ 46.67 $&$ 2.26 $&$ 133.254 $&$ 1.640 $\\
+$ 22 $&$ 1.8010 $&$ 0.0272 $&$ 43.80 $&$ 2.11 $&$ 121.679 $&$ 2.086 $\\
+$ 23 $&$ 1.9223 $&$ 0.0110 $&$ 39.47 $&$ 1.06 $&$ 136.467 $&$ 1.149 $\\
+$ 24 $&$ 2.0253 $&$ 0.0090 $&$ 32.60 $&$ 1.12 $&$ 147.912 $&$ 0.858 $\\
+$ 25 $&$ 2.1327 $&$ 0.0042 $&$ 27.80 $&$ 0.56 $&$ 155.959 $&$ 0.767 $\\
+$ 27 $&$ 2.4629 $&$ 0.0086 $&$ 17.73 $&$ 0.59 $&$ 170.239 $&$ 1.058 $\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Data van het grote oppervlak zonder uitschieters voor $\phi [\degree]$ en zonder te grootte $\Delta\phi [\degree]$}
+\begin{tabular}{c | c | c | c | c | c | c }
+$ n $&$\omega [Hz] $&$ \Delta\omega [Hz] $&$ A [mm] $&$ \Delta A [mm] $&$ \phi [\degree] $&$ \Delta \phi [\degree] $\\
+\hline
+$ 1 $&$ 0.2706 $&$ 0.0004 $&$ 24.00 $&$ 0.00 $&$ 15.658 $&$ 0.170 $\\
+$ 2 $&$ 0.6376 $&$ 0.0008 $&$ 28.13 $&$ 0.35 $&$ 17.338 $&$ 0.294 $\\
+$ 3 $&$ 0.7874 $&$ 0.0008 $&$ 30.07 $&$ 0.26 $&$ 18.576 $&$ 0.211 $\\
+$ 4 $&$ 0.8281 $&$ 0.0006 $&$ 31.40 $&$ 0.51 $&$ 19.198 $&$ 0.331 $\\
+$ 5 $&$ 0.8670 $&$ 0.0007 $&$ 32.00 $&$ 0.00 $&$ 19.851 $&$ 0.259 $\\
+$ 6 $&$ 0.9360 $&$ 0.0012 $&$ 34.00 $&$ 0.00 $&$ 21.881 $&$ 0.318 $\\
+$ 7 $&$ 0.9983 $&$ 0.0024 $&$ 35.93 $&$ 0.26 $&$ 23.528 $&$ 0.361 $\\
+$ 8 $&$ 1.0812 $&$ 0.0012 $&$ 39.27 $&$ 0.46 $&$ 27.324 $&$ 0.429 $\\
+$ 9 $&$ 1.1447 $&$ 0.0033 $&$ 41.33 $&$ 1.29 $&$ 31.539 $&$ 0.383 $\\
+$ 10 $&$ 1.2158 $&$ 0.0012 $&$ 44.33 $&$ 0.49 $&$ 37.320 $&$ 0.590 $\\
+$ 11 $&$ 1.2678 $&$ 0.0199 $&$ 47.33 $&$ 1.29 $&$ 42.901 $&$ 0.754 $\\
+$ 12 $&$ 1.3380 $&$ 0.0029 $&$ 50.33 $&$ 0.82 $&$ 50.641 $&$ 0.484 $\\
+$ 13 $&$ 1.4020 $&$ 0.0207 $&$ 52.87 $&$ 1.06 $&$ 59.923 $&$ 0.812 $\\
+$ 14 $&$ 1.4616 $&$ 0.0050 $&$ 54.40 $&$ 1.35 $&$ 69.598 $&$ 0.733 $\\
+$ 15 $&$ 1.5072 $&$ 0.0046 $&$ 54.40 $&$ 2.47 $&$ 75.745 $&$ 0.941 $\\
+$ 16 $&$ 1.5503 $&$ 0.0052 $&$ 54.00 $&$ 1.41 $&$ 83.123 $&$ 0.904 $\\
+$ 17 $&$ 1.6013 $&$ 0.0062 $&$ 52.60 $&$ 1.55 $&$ 91.120 $&$ 0.704 $\\
+$ 18 $&$ 1.6291 $&$ 0.0057 $&$ 50.67 $&$ 3.06 $&$ 95.166 $&$ 0.567 $\\
+$ 20 $&$ 1.7044 $&$ 0.0334 $&$ 47.60 $&$ 3.56 $&$ 107.985 $&$ 2.228 $\\
+$ 22 $&$ 1.8010 $&$ 0.0272 $&$ 43.80 $&$ 2.11 $&$ 121.679 $&$ 2.086 $\\
+$ 23 $&$ 1.9223 $&$ 0.0110 $&$ 39.47 $&$ 1.06 $&$ 136.467 $&$ 1.149 $\\
+$ 24 $&$ 2.0253 $&$ 0.0090 $&$ 32.60 $&$ 1.12 $&$ 147.912 $&$ 0.858 $\\
+$ 25 $&$ 2.1327 $&$ 0.0042 $&$ 27.80 $&$ 0.56 $&$ 155.959 $&$ 0.767 $\\
+$ 26 $&$ 2.2977 $&$ 0.0050 $&$ 22.00 $&$ 0.00 $&$ 165.267 $&$ 0.997 $\\
+$ 27 $&$ 2.4629 $&$ 0.0086 $&$ 17.73 $&$ 0.59 $&$ 170.239 $&$ 1.058 $\\
+\end{tabular}
+\end{table}
+
+\end{document}
